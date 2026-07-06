@@ -1,0 +1,66 @@
+{
+    "name": "Absensi GANJ'S",
+    "short_name": "GANJ'S",
+    "description": "Sistem Absensi Karyawan Ayam Bebek GANJ'S Cak Ali berbasis Geolocation",
+    "start_url": "/karyawan/dashboard",
+    "display": "standalone",
+    "background_color": "#FBF7F2",
+    "theme_color": "#C1440E",
+    "orientation": "portrait",
+    "lang": "id",
+    "scope": "/",
+    "icons": [
+        {
+            "src": "/icons/icon-72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-152.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icons/icon-384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["productivity", "business"],
+    "shortcuts": [
+        {
+            "name": "Absen Masuk",
+            "short_name": "Absen",
+            "description": "Langsung ke halaman absensi",
+            "url": "/karyawan/dashboard",
+            "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
+        }
+    ]
+}

@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   GANJ'S Design System — Global Styles
+   ============================================================ */
+
+@layer base {
+    html {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background-color: #FBF7F2;
+        color: #231F1A;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        @apply antialiased;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { @apply bg-ganjs-border rounded-full; }
+
+    /* Focus visible only for keyboard */
+    :focus-visible {
+        @apply outline-2 outline-ganjs-primary outline-offset-2;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+@layer components {
+    /* ---- Buttons ---- */
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3
+               bg-ganjs-primary text-white font-semibold text-sm
+               rounded-btn shadow-btn
+               transition-all duration-200
+               hover:bg-ganjs-primary-dark hover:-translate-y-0.5
+               active:scale-95 active:translate-y-0
+               disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3
+               bg-white text-ganjs-primary font-semibold text-sm
+               border border-ganjs-border rounded-btn
+               transition-all duration-200
+               hover:bg-ganjs-primary-light hover:border-ganjs-primary
+               active:scale-95;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2
+               text-ganjs-ink-muted font-medium text-sm rounded-lg
+               transition-all duration-200
+               hover:bg-ganjs-bg hover:text-ganjs-ink
+               active:scale-95;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
+               bg-ganjs-danger text-white font-semibold text-sm
+               rounded-btn transition-all duration-200
+               hover:opacity-90 active:scale-95;
+    }
+
+    /* ---- Cards ---- */
+    .card {
+        @apply bg-white rounded-card shadow-card border border-ganjs-border/50 p-5;
+    }
+
+    .card-hover {
+        @apply card transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
+    }
+
+    /* ---- Status badges ---- */
+    .badge-hadir {
+        @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
+               bg-ganjs-secondary-light text-ganjs-secondary;
+    }
+
+    .badge-terlambat {
+        @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
+               bg-ganjs-warning-light text-ganjs-warning;
+    }
+
+    .badge-tidak_hadir {
+        @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
+               bg-ganjs-danger-light text-ganjs-danger;
+    }
+
+    /* ---- Form inputs ---- */
+    .input {
+        @apply w-full px-4 py-3 bg-white border border-ganjs-border rounded-xl text-sm
+               text-ganjs-ink placeholder-ganjs-ink-muted
+               transition-all duration-200
+               focus:border-ganjs-primary focus:ring-2 focus:ring-ganjs-primary/20
+               focus:outline-none;
+    }
+
+    .label {
+        @apply block text-sm font-semibold text-ganjs-ink mb-1.5;
+    }
+
+    /* ---- Stat cards ---- */
+    .stat-card {
+        @apply card flex flex-col gap-1;
+    }
+
+    .stat-card .stat-value {
+        @apply text-3xl font-bold font-display;
+    }
+
+    .stat-card .stat-label {
+        @apply text-sm text-ganjs-ink-muted font-medium;
+    }
+
+    /* ---- Toast ---- */
+    .toast {
+        @apply fixed top-4 left-1/2 -translate-x-1/2 z-50
+               px-5 py-3 rounded-xl shadow-lg text-sm font-semibold
+               animate-slide-up flex items-center gap-2;
+    }
+
+    .toast-success {
+        @apply toast bg-ganjs-secondary text-white;
+    }
+
+    .toast-error {
+        @apply toast bg-ganjs-danger text-white;
+    }
+
+    /* ---- Skeleton ---- */
+    .skeleton {
+        @apply bg-ganjs-border/60 rounded-lg animate-pulse;
+    }
+
+    /* ---- Table ---- */
+    .table-ganjs {
+        @apply w-full text-sm text-ganjs-ink;
+    }
+    .table-ganjs thead tr {
+        @apply bg-ganjs-bg border-b border-ganjs-border;
+    }
+    .table-ganjs thead th {
+        @apply px-4 py-3 text-left text-xs font-semibold text-ganjs-ink-muted uppercase tracking-wide;
+    }
+    .table-ganjs tbody tr {
+        @apply border-b border-ganjs-border/50 hover:bg-ganjs-bg/60 transition-colors;
+    }
+    .table-ganjs tbody td {
+        @apply px-4 py-3.5;
+    }
+
+    /* ---- Absen button (tombol utama lingkaran) ---- */
+    .absen-btn {
+        @apply relative flex items-center justify-center
+               w-48 h-48 rounded-full
+               text-white font-bold text-lg
+               shadow-btn cursor-pointer select-none
+               transition-all duration-300
+               active:scale-95;
+    }
+
+    .absen-btn-idle {
+        @apply absen-btn bg-ganjs-primary;
+        animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .absen-btn-loading {
+        @apply absen-btn bg-ganjs-warning cursor-wait;
+    }
+
+    .absen-btn-success {
+        @apply absen-btn bg-ganjs-secondary cursor-default;
+        animation: none;
+    }
+
+    .absen-btn-error {
+        @apply absen-btn bg-ganjs-danger cursor-pointer;
+        animation: none;
+    }
+
+    /* ---- Bottom Nav ---- */
+    .bottom-nav {
+        @apply fixed bottom-0 left-0 right-0 z-40
+               bg-white border-t border-ganjs-border
+               flex items-center justify-around
+               px-2 py-2 safe-bottom;
+    }
+
+    .bottom-nav-item {
+        @apply flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl
+               text-ganjs-ink-muted transition-all duration-200 min-w-[4rem];
+    }
+
+    .bottom-nav-item.active {
+        @apply text-ganjs-primary;
+    }
+
+    .bottom-nav-item span {
+        @apply text-[10px] font-semibold;
+    }
+
+    /* ---- Admin Sidebar ---- */
+    .sidebar {
+        @apply fixed top-0 left-0 h-full z-30
+               bg-ganjs-ink w-64
+               flex flex-col
+               transition-transform duration-300;
+    }
+
+    .sidebar-item {
+        @apply flex items-center gap-3 px-4 py-3 mx-2 rounded-xl
+               text-white/70 text-sm font-medium
+               transition-all duration-200
+               hover:bg-white/10 hover:text-white;
+    }
+
+    .sidebar-item.active {
+        @apply bg-ganjs-primary text-white;
+    }
+}
+
+@layer utilities {
+    .safe-bottom {
+        padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+    }
+
+    .font-display {
+        font-family: 'Fraunces', Georgia, serif;
+    }
+
+    .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Rupiah number formatting */
+    .rupiah::before {
+        content: 'Rp ';
+        @apply text-ganjs-ink-muted font-normal;
+    }
+}
