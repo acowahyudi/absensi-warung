@@ -47,6 +47,10 @@
                     <span class="text-ganjs-ink-muted">Uang Makan/hari</span>
                     <span class="font-mono font-bold text-ganjs-secondary">Rp {{ number_format($karyawan->uang_makan_per_hari, 0, ',', '.') }}</span>
                 </div>
+                <div class="flex justify-between text-sm border-t border-ganjs-border/40 pt-2 mt-2">
+                    <span class="text-ganjs-ink-muted">Lokasi Absen</span>
+                    <span class="font-semibold text-ganjs-ink">{{ $karyawan->lokasi->nama_lokasi ?? 'Default (Aktif)' }}</span>
+                </div>
             </div>
         </div>
 

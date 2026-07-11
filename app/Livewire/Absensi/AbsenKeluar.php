@@ -42,7 +42,7 @@ class AbsenKeluar extends Component
 
         // Validasi geofence
         $geofenceService = app(GeofenceService::class);
-        $validasi = $geofenceService->validasiRadius($latitude, $longitude);
+        $validasi = $geofenceService->validasiRadius($latitude, $longitude, $karyawan->id_lokasi);
 
         if (!$validasi['valid']) {
             $this->state = 'error';

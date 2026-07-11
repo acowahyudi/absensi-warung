@@ -42,6 +42,7 @@ Route::middleware(['auth', CheckRole::class . ':admin'])
         Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
         Route::delete('/jadwal/{jadwal}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
         Route::post('/jadwal/bulk', [JadwalController::class, 'bulkStore'])->name('jadwal.bulk');
+        Route::post('/jadwal/weekly', [JadwalController::class, 'storeWeekly'])->name('jadwal.weekly');
 
         // Laporan Gaji
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');

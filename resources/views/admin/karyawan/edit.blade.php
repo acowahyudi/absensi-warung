@@ -48,10 +48,24 @@
                 </div>
             </div>
 
-            <div>
-                <label class="label">Tanggal Bergabung</label>
-                <input type="date" name="tanggal_bergabung" value="{{ old('tanggal_bergabung', $karyawan->tanggal_bergabung->format('Y-m-d')) }}"
-                       class="input" required>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="label">Tanggal Bergabung</label>
+                    <input type="date" name="tanggal_bergabung" value="{{ old('tanggal_bergabung', $karyawan->tanggal_bergabung->format('Y-m-d')) }}"
+                           class="input" required>
+                </div>
+                <div>
+                    <label class="label">Lokasi Absen</label>
+                    <select name="id_lokasi" class="input">
+                        <option value="">Default (Lokasi Aktif)</option>
+                        @foreach($lokasiList as $lokasi)
+                            <option value="{{ $lokasi->id_lokasi }}" {{ old('id_lokasi', $karyawan->id_lokasi) == $lokasi->id_lokasi ? 'selected' : '' }}>
+                                {{ $lokasi->nama_lokasi }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('id_lokasi') <p class="text-xs text-ganjs-danger mt-1">{{ $message }}</p> @enderror
+                </div>
             </div>
 
             <div class="flex items-center gap-3 p-3 bg-ganjs-bg rounded-xl">

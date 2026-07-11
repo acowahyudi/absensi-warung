@@ -25,10 +25,10 @@
                         <th>Nama</th>
                         <th>NIK</th>
                         <th>Jenis Kelamin</th>
+                        <th>Lokasi Absen</th>
                         <th class="text-right">Gaji Pokok</th>
                         <th class="text-right">Uang Makan/hari</th>
                         <th>Status</th>
-                        <th>Bergabung</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -48,6 +48,11 @@
                             </td>
                             <td class="font-mono text-sm">{{ $k->nik_karyawan }}</td>
                             <td>{{ $k->jenis_kelamin }}</td>
+                            <td>
+                                <span class="text-xs font-semibold px-2 py-1 rounded bg-ganjs-bg border border-ganjs-border text-ganjs-ink">
+                                    {{ $k->lokasi->nama_lokasi ?? 'Default (Aktif)' }}
+                                </span>
+                            </td>
                             <td class="text-right font-mono text-sm">Rp {{ number_format($k->gaji_pokok, 0, ',', '.') }}</td>
                             <td class="text-right font-mono text-sm">Rp {{ number_format($k->uang_makan_per_hari, 0, ',', '.') }}</td>
                             <td>
@@ -57,7 +62,6 @@
                                     <span class="badge-tidak_hadir">Nonaktif</span>
                                 @endif
                             </td>
-                            <td class="text-sm text-ganjs-ink-muted">{{ $k->tanggal_bergabung->format('d M Y') }}</td>
                             <td>
                                 <div class="flex gap-1">
                                     <a href="{{ route('admin.karyawan.edit', $k) }}" class="btn-ghost px-2 py-1 text-xs">Edit</a>

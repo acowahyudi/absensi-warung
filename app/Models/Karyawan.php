@@ -13,6 +13,7 @@ class Karyawan extends Model
 
     protected $fillable = [
         'id_pengguna',
+        'id_lokasi',
         'nik_karyawan',
         'jenis_kelamin',
         'gaji_pokok',
@@ -46,6 +47,11 @@ class Karyawan extends Model
     public function laporanGaji(): HasMany
     {
         return $this->hasMany(LaporanGaji::class, 'id_karyawan', 'id_karyawan');
+    }
+
+    public function lokasi(): BelongsTo
+    {
+        return $this->belongsTo(LokasiKantor::class, 'id_lokasi', 'id_lokasi');
     }
 
     public function getNamaAttribute(): string

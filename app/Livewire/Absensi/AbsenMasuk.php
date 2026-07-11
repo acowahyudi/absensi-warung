@@ -54,7 +54,7 @@ class AbsenMasuk extends Component
 
         // Validasi geofence di server
         $geofenceService = app(GeofenceService::class);
-        $validasi = $geofenceService->validasiRadius($latitude, $longitude);
+        $validasi = $geofenceService->validasiRadius($latitude, $longitude, $karyawan->id_lokasi);
         $this->jarakMeter = $validasi['jarak'];
 
         if (!$validasi['valid']) {

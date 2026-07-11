@@ -34,9 +34,19 @@ class GeofenceService
      *
      * @return array{valid: bool, jarak: float, lokasi: LokasiKantor|null, pesan: string}
      */
-    public function validasiRadius(float $latUser, float $lonUser): array
+    public function validasiRadius(float $latUser, float $lonUser, ?int $idLokasi = null): array
     {
-        $lokasi = LokasiKantor::aktif();
+        $lokasi = null;
+
+        // Cari lokasi spesifik jika ditugaskan
+        if ($idLokasi) {
+            $lokasi = LokasiKantor::find($idLokasi);
+        }
+
+        // Fallback ke lokasi aktif/default
+        if (!$lokasi) {
+            $lokasi = LokasiKantor::aktif();
+        }
 
         if (!$lokasi) {
             return [
