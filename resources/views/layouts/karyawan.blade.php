@@ -16,6 +16,35 @@
 </head>
 <body class="h-full bg-ganjs-bg overflow-x-hidden">
 
+    {{-- Banner PWA Install --}}
+    <div x-data="pwaInstall()" x-show="showBanner" class="fixed top-4 left-4 right-4 z-50 bg-white p-4 rounded-xl shadow-lg border border-ganjs-primary/20 animate-slide-up" style="display: none;">
+        <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-ganjs-primary-light text-ganjs-primary flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="text-sm font-bold text-ganjs-ink">Pasang Aplikasi Absensi</p>
+                <p class="text-xs text-ganjs-ink-muted mt-0.5">Instal di HP Anda untuk akses lebih cepat dan stabil.</p>
+                
+                {{-- Android/Chrome Button --}}
+                <div class="flex gap-2 mt-3" x-show="platform === 'android'">
+                    <button @click="installApp()" class="btn-primary py-1.5 px-4 text-xs font-bold shadow-none">Pasang</button>
+                    <button @click="dismissBanner()" class="btn-secondary py-1.5 px-4 text-xs font-semibold shadow-none border-0 hover:bg-ganjs-bg">Nanti</button>
+                </div>
+
+                {{-- iOS Safari Instruction --}}
+                <div class="mt-3 text-xs text-ganjs-ink-muted flex items-start gap-1" x-show="platform === 'ios'">
+                    <div class="flex-1">
+                        <span>Ketuk tombol <b>Bagikan (Share)</b> pada browser, lalu pilih <b>Tambah ke Layar Utama (Add to Home Screen)</b>.</span>
+                    </div>
+                    <button @click="dismissBanner()" class="text-ganjs-primary font-bold ml-2 px-2 py-1">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- Toast notification --}}
     @if(session('success'))
         <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3500)"
@@ -97,6 +126,60 @@
                     .then(reg => console.log('SW registered:', reg.scope))
                     .catch(err => console.log('SW error:', err));
             });
+        }
+
+        // PWA Install Prompt Script
+        function pwaInstall() {
+            return {
+                showBanner: false,
+                platform: 'other',
+                deferredPrompt: null,
+
+                init() {
+                    const isStandalone = window.matchMedia('(display-mode: standalone)').matches 
+                        || window.navigator.standalone 
+                        || document.referrer.includes('android-app://');
+                    
+                    if (isStandalone) {
+                        return; // Jangan tampilkan jika sudah terinstall
+                    }
+
+                    const userAgent = window.navigator.userAgent.toLowerCase();
+                    if (/iphone|ipad|ipod/.test(userAgent)) {
+                        this.platform = 'ios';
+                        if (!localStorage.getItem('pwa_dismissed')) {
+                            this.showBanner = true;
+                        }
+                    } else if (/android/.test(userAgent)) {
+                        this.platform = 'android';
+                        
+                        window.addEventListener('beforeinstallprompt', (e) => {
+                            e.preventDefault();
+                            this.deferredPrompt = e;
+                            if (!localStorage.getItem('pwa_dismissed')) {
+                                this.showBanner = true;
+                            }
+                        });
+                    }
+                },
+
+                installApp() {
+                    if (!this.deferredPrompt) return;
+                    this.showBanner = false;
+                    this.deferredPrompt.prompt();
+                    this.deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('App installed successfully');
+                        }
+                        this.deferredPrompt = null;
+                    });
+                },
+
+                dismissBanner() {
+                    this.showBanner = false;
+                    localStorage.setItem('pwa_dismissed', 'true');
+                }
+            }
         }
     </script>
 </body>
