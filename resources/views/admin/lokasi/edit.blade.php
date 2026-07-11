@@ -25,14 +25,14 @@
             <div class="grid grid-cols-2 gap-3">
                 <div>
                     <label class="label">Latitude</label>
-                    <input type="number" name="latitude" step="0.0000001"
+                    <input type="number" name="latitude" step="any"
                            value="{{ old('latitude', $lokasi->latitude ?? -7.2574719) }}"
                            class="input font-mono" required>
                     @error('latitude') <p class="text-xs text-ganjs-danger mt-1">{{ $message }}</p> @enderror
                 </div>
                 <div>
                     <label class="label">Longitude</label>
-                    <input type="number" name="longitude" step="0.0000001"
+                    <input type="number" name="longitude" step="any"
                            value="{{ old('longitude', $lokasi->longitude ?? 112.7520883) }}"
                            class="input font-mono" required>
                     @error('longitude') <p class="text-xs text-ganjs-danger mt-1">{{ $message }}</p> @enderror
