@@ -15,7 +15,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-ganjs-ink antialiased h-full bg-gradient-to-br from-[#FBF7F2] via-[#F5EEE3] to-[#EADBC8] overflow-hidden relative">
+    <body class="font-sans text-ganjs-ink antialiased h-full bg-gradient-to-br from-[#FEFBF4] via-[#FEF5DD] to-[#F3E6C8] overflow-hidden relative">
         
         <!-- Animated Background Blobs -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -30,7 +30,7 @@
                 <!-- Branding Header -->
                 <div class="flex flex-col items-center mb-8">
                     <a href="/" wire:navigate class="transition-transform duration-300 hover:scale-105">
-                        <x-application-logo class="w-20 h-20 object-contain drop-shadow-md" />
+                        <x-application-logo class="w-20 h-20 object-contain rounded-full bg-white p-2.5 shadow-md border border-ganjs-border/30" />
                     </a>
                     <h2 class="text-xl font-bold font-display text-ganjs-ink mt-4 text-center">
                         Ayam Bebek GANJ'S

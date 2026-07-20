@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#C1440E">
+    <meta name="theme-color" content="#DE1B0A">
     <meta name="description" content="Sistem Absensi Karyawan Ayam Bebek GANJ'S Cak Ali">
     <title>{{ $title ?? 'Absensi' }} — GANJ'S</title>
 

@@ -20,20 +20,20 @@ export default {
             colors: {
                 // Design tokens GANJ'S
                 ganjs: {
-                    bg: '#FBF7F2',
+                    bg: '#FEF8EC',
                     surface: '#FFFFFF',
-                    ink: '#231F1A',
-                    'ink-muted': '#6B6260',
-                    primary: '#C1440E',       // terracotta — CTA utama
-                    'primary-dark': '#9E3109',
-                    'primary-light': '#F4D4C7',
-                    secondary: '#2F5233',     // hijau daun — hadir/sukses
-                    'secondary-light': '#D1E8D4',
-                    warning: '#D98E04',       // amber — terlambat
-                    'warning-light': '#FDF3D0',
-                    danger: '#B3261E',        // merah — error/tidak hadir
-                    'danger-light': '#FDECEA',
-                    border: '#E8DDD6',
+                    ink: '#2C1A14',
+                    'ink-muted': '#735F58',
+                    primary: '#DE1B0A',       // merah brand utama — CTA utama
+                    'primary-dark': '#B71408',
+                    'primary-light': '#FCE8E6',
+                    secondary: '#185E15',     // hijau daun brand — hadir/sukses
+                    'secondary-light': '#E2F1E1',
+                    warning: '#E09700',       // amber/gold — terlambat
+                    'warning-light': '#FEF6D0',
+                    danger: '#BA1A1A',        // merah gelap — error/tidak hadir
+                    'danger-light': '#FDECEB',
+                    border: '#EADCC9',
                 },
             },
             borderRadius: {
@@ -41,9 +41,9 @@ export default {
                 'btn': '999px',
             },
             boxShadow: {
-                'card': '0 2px 16px 0 rgba(35, 31, 26, 0.08)',
-                'btn': '0 4px 20px 0 rgba(193, 68, 14, 0.35)',
-                'btn-pulse': '0 0 0 20px rgba(193, 68, 14, 0)',
+                'card': '0 2px 16px 0 rgba(44, 26, 20, 0.06)',
+                'btn': '0 4px 20px 0 rgba(222, 27, 10, 0.35)',
+                'btn-pulse': '0 0 0 20px rgba(222, 27, 10, 0)',
             },
             animation: {
                 'pulse-ring': 'pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -53,8 +53,8 @@ export default {
             },
             keyframes: {
                 'pulse-ring': {
-                    '0%, 100%': { boxShadow: '0 0 0 0 rgba(193, 68, 14, 0.4)' },
-                    '50%': { boxShadow: '0 0 0 24px rgba(193, 68, 14, 0)' },
+                    '0%, 100%': { boxShadow: '0 0 0 0 rgba(222, 27, 10, 0.4)' },
+                    '50%': { boxShadow: '0 0 0 24px rgba(222, 27, 10, 0)' },
                 },
                 'slide-up': {
                     '0%': { transform: 'translateY(16px)', opacity: '0' },
